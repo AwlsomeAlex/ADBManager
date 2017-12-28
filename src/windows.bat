@@ -2,6 +2,16 @@
 REM Android ADB Device Manager - Version GIT
 REM Created by AwlsomeAlex (GPLv3)
 title Android ADB Device Manager - Loading Files...
+if "%b2eprogramfilename%"=="" (
+	title Android ADB Device Manager - Source File Executed
+	call:title
+	echo =================
+	echo !!!!!WARNING!!!!!
+	echo =================
+	echo This script can not be ran natively and MUST be converted to an .exe!
+	pause
+	goto :eof
+)
 goto home
 
 :home
