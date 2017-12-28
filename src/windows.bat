@@ -5,14 +5,16 @@ title Android ADB Device Manager - Loading Files...
 if "%b2eprogramfilename%"=="" (
 	title Android ADB Device Manager - Source File Executed
 	call:title
-	echo =================
-	echo !!!!!WARNING!!!!!
-	echo =================
+	echo ===================
+	echo !!!!! WARNING !!!!!
+	echo ===================
 	echo This script can not be ran natively and MUST be converted to an .exe!
 	pause
 	goto :eof
 )
 goto home
+
+
 
 :home
 title Android ADB Device Manager - Main Menu
@@ -30,7 +32,8 @@ echo 2) Sideload APK to Device
 echo 3) Inject File to Device
 echo 4) Reboot Device
 echo 5) Install Universal ADB Driver
-echo 6) Exit Utility
+echo 6) Advanced Options
+echo 7) Exit Utility
 echo.
 set /p choice=Please Select a Number:
 if "%choice%"=="1" goto test
@@ -38,8 +41,11 @@ if "%choice%"=="2" goto sideload
 if "%choice%"=="3" goto inject
 if "%choice%"=="4" goto reboot
 if "%choice%"=="5" goto drivers
-if "%choice%"=="6" goto stop
+if "%choice%"=="6" goto advanced
+if "%choice%"=="7" goto stop
 goto home
+
+
 
 :: TITLE FUNCTION
 :title
@@ -52,6 +58,8 @@ echo      Version GIT
 echo.
 goto:eof
 
+
+
 :: TEST FUNCTION
 :test
 title Android ADB Device Manager - Test ADB Connection
@@ -62,6 +70,7 @@ echo.
 adb.exe devices
 pause
 goto home
+
 
 
 :: SIDELOAD FUNCTION
@@ -90,6 +99,8 @@ echo The APK %file% has been sideloaded.
 pause
 goto home
 
+
+
 :: INJECT FILES TO SDCARD
 :inject
 title Android ADB Device Manager - Inject File
@@ -116,6 +127,8 @@ echo.
 echo The file %file% has been injected.
 pause
 goto home
+
+
 
 :: REBOOT DEVICE
 :reboot
@@ -148,6 +161,8 @@ echo.
 pause
 goto home
 
+
+
 :: INSTALL ADB UNIVERSAL DRIVER
 :drivers
 title Android ADB Device Manager - Install Universal ADB Driver
@@ -155,9 +170,9 @@ cls
 call:title
 echo The Utility will now install the ADB Universal Driver. Continue?
 echo.
-echo =================
-echo !!!!!WARNING!!!!!
-echo =================
+echo ===================
+echo !!!!! WARNING !!!!!
+echo ===================
 echo This will require a REBOOT!
 echo.
 set /p choice=Type YES or NO:
@@ -174,6 +189,104 @@ goto creboot
 Taskkill /IM adb.exe /F
 shutdown /r
 goto home
+
+
+
+:: =====================
+:: ADVANCED MENU OPTIONS
+:: =====================
+
+
+
+:: ADVANCED MAIN MENU
+:advanced
+title Android ADB Device Manager - Advanced Menu
+cls
+call:title
+echo.
+echo Android ADB Device Manager Advanced Menu
+echo.
+echo Please Select an Option:
+echo ========================
+echo.
+echo 1) Enter ADB Shell
+echo 2) Enabled ADB Root
+echo 3) Clear Dalvik Cache
+echo 4) Clear System Storage
+echo 5) Log Device
+echo 6) Reboot to Bootloader
+echo 7) Custom Command
+echo 8) Back to Main Menu
+echo.
+set /p choice=Please Select a Number:
+if "%choice%"=="1" goto shell
+if "%choice%"=="2" goto root
+if "%choice%"=="3" goto cachewipe
+if "%choice%"=="4" goto systemwipe
+if "%choice%"=="5" goto log
+if "%choice%"=="6" goto bootloader
+if "%choice%"=="7" goto custom
+if "%choice%"=="8" goto home
+goto advanced
+
+
+
+:: WARNING FUNCTION
+:advancedwarning
+echo.
+echo ===================
+echo !!!!! WARNING !!!!!
+echo ===================
+echo The command that is about to be executed CAN cause your device to work 
+echo in ways that could risk the wellbeing of the data stored on the device
+echo and could cause a complete loss of data and/or unfixable system BRICK! 
+echo.
+echo Are you sure you would like to continue?
+set /p choice=Type YES or NO:
+if "%choice%"=="YES" goto:eof
+if "%choice%"=="NO" goto home
+
+
+
+:: ADB SHELL (ADVANCED)
+:shell
+
+
+
+:: ADB Root (ADVANCED)
+:root
+
+
+
+:: CLEAR DALVIK CACHE & SYSTEM CACHE PARTITIONS (ADVANCED)
+:cachewipe
+
+
+
+:: CLEAR SYSTEM PARTITION (ADVANCED)
+:systemwipe
+
+
+
+:: LOG SYSTEM EVENTS (ADVANCED)
+:log
+
+
+
+:: REBOOT DEVICE INTO BOOTLOADER (ADVANCED)
+:bootloader
+
+
+
+:: ENTER CUSTOM COMMAND TO BE EXECUTED BY ADB.EXE (ADVANCED)
+:custom
+
+
+:: =========================
+:: ADVANCED MENU OPTIONS END
+:: =========================
+
+
 
 :: STOP FUNCTION
 :stop
