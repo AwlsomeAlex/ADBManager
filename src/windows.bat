@@ -242,6 +242,7 @@ echo in ways that could risk the wellbeing of the data stored on the device
 echo and could cause a complete loss of data and/or unfixable system BRICK! 
 echo.
 echo Are you sure you would like to continue?
+echo.
 set /p choice=Type YES or NO:
 if "%choice%"=="YES" goto:eof
 if "%choice%"=="NO" goto advanced
@@ -254,7 +255,13 @@ title Android ADB Device Manager - Internal Device Terminal (Shell)
 cls
 call:title
 call:advancedwarning
+echo The Utility will now connect to your Android's Internal Terminal (Shell).
+echo To exit the shell type in the terminal interpretor "exit".
+echo. 
+adb.exe shell
 pause
+goto advanced
+
 
 
 :: ADB Root (ADVANCED)
