@@ -166,7 +166,6 @@ if "%choice%"=="NO" goto home
 
 :installdriver
 %extd% /download "http://download.clockworkmod.com/test/UniversalAdbDriverSetup.msi" "UniversalAdbDriverSetup.msi"
-:: wget.exe http://download.clockworkmod.com/test/UniversalAdbDriverSetup.msi [WGET]
 UniversalAdbDriverSetup.msi
 pause
 goto creboot
