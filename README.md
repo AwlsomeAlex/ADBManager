@@ -18,8 +18,7 @@ I started to work on this due to complete boredom and because I have a super old
 ### WINDOWS VERSION
 * F2K0 BAT to EXE Converter (For easily configurable executables)
 * ADB Shell's ADB Kit (Built into Executable)
-* GNU Make [Windows Executable] (Built into Executable)
-* ClockworkMod's Universal ADB Drivers (Installed via wget)
+* ClockworkMod's Universal ADB Drivers (Natively downloaded and Installed)
 
 ## How to Build:
 Source Code is available, however compiling process is hard to replicate so good luck until I have time to make this. But everything needed (Except BAT to EXE Converter) is found in this repository until I get threatened to take down the executables).
