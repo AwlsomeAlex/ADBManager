@@ -244,13 +244,17 @@ echo.
 echo Are you sure you would like to continue?
 set /p choice=Type YES or NO:
 if "%choice%"=="YES" goto:eof
-if "%choice%"=="NO" goto home
+if "%choice%"=="NO" goto advanced
 
 
 
 :: ADB SHELL (ADVANCED)
 :shell
-
+title Android ADB Device Manager - Internal Device Terminal (Shell)
+cls
+call:title
+call:advancedwarning
+pause
 
 
 :: ADB Root (ADVANCED)
