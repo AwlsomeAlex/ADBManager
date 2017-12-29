@@ -386,7 +386,17 @@ goto advanced
 
 :: ENTER CUSTOM COMMAND TO BE EXECUTED BY ADB.EXE (ADVANCED)
 :custom
-
+title Android ADB Device Manager - Enter Custom ADB Command
+cls
+call:title
+echo The utility will now ask for a custom command to be executed by ADB.exe.
+call:advancedwarning
+echo.
+echo Please enter your command to be executed by ADB. [FASTBOOT NOT SUPPORTED!]
+set /p input="adb.exe "
+adb.exe %input%
+pause
+goto advanced
 
 :: =========================
 :: ADVANCED MENU OPTIONS END
