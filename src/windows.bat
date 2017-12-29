@@ -286,7 +286,7 @@ call:title
 echo The utility will now clear the Application Cache. THIS WILL REBOOT YOUR DEVICE TO FASTBOOT!
 call:advancedwarning
 echo.
-if exist <fastboot.exe> (
+if exist fastboot.exe (
     adb.exe devices
 	echo.
 	echo Please confirm your device is listed above.
@@ -323,7 +323,7 @@ call:title
 echo The utility will now clear the User Data. THIS WILL REBOOT YOUR DEVICE TO FASTBOOT!
 call:advancedwarning
 echo.
-if exist <fastboot.exe> (
+if exist fastboot.exe (
     adb.exe devices
 	echo.
 	echo Please confirm your device is listed above.
@@ -375,7 +375,7 @@ call:title
 echo The utility will now reboot your device into Fastboot.
 call:advancedwarning
 echo.
-if exist <fastboot.exe> (
+if exist fastboot.exe (
     adb.exe reboot-bootloader
 ) else (
     echo FASTBOOT IS NOT DETECTED. Is this not the experimental build of ADB Manager?
