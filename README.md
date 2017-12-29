@@ -1,3 +1,4 @@
+
 # ADBManager (AwlsomeAlex's Android ADB Device Manager)
 This nifty little program is to be used as an easy way to manage your device via ADB Connections. 
 
@@ -13,6 +14,8 @@ I started to work on this due to complete boredom and because I have a super old
 * Inject files into SDCARD (Storage)
 * Reboot the device normally or into recovery
 * Install ADB Universal Drivers
+* Fastboot Support (Experimental)
+* Advanced ADB Commands such as shell, formatting, etc.
 
 ## Programs Used:
 ### WINDOWS VERSION
