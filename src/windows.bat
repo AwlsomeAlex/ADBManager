@@ -211,7 +211,7 @@ echo ========================
 echo.
 echo 1) Enter ADB Shell
 echo 2) Enable ADB Root
-echo 3) Clear Dalvik Cache
+echo 3) Clear App Cache
 echo 4) Clear System Storage
 echo 5) Log Device
 echo 6) Reboot to Bootloader
@@ -221,7 +221,7 @@ echo.
 set /p choice=Please Select a Number:
 if "%choice%"=="1" goto shell
 if "%choice%"=="2" goto root
-if "%choice%"=="3" goto cachewipe
+if "%choice%"=="3" goto appcachewipe
 if "%choice%"=="4" goto systemwipe
 if "%choice%"=="5" goto log
 if "%choice%"=="6" goto bootloader
@@ -278,9 +278,35 @@ goto advanced
 
 
 
-:: CLEAR DALVIK CACHE & SYSTEM CACHE PARTITIONS (ADVANCED)
-:cachewipe
-
+:: CLEAR APP CACHE (ADVANCED)
+:appcachewipe
+title Android ADB Device Manager - Clear Application Cache
+cls
+call:title
+echo The utility will now clear the Application Cache. THIS WILL REBOOT YOUR DEVICE TO FASTBOOT!
+call:advancedwarning
+echo.
+adb.exe devices
+echo.
+echo Please confirm your device is listed above.
+pause
+echo.
+echo Rebooting to Fastboot...
+adb.exe reboot-bootloader
+echo.
+echo Please DO NOT CLICK ANYTHING UNTIL YOUR DEVICE SHOWS IT IS IN FASTBOOT!!!
+pause
+pause
+pause
+echo.
+echo Checking if Fastboot Detects your Device...
+fastboot.exe devices
+echo.
+echo IF YOUR DEVICE IS NOT DETECTED EXIT THIS PROGRAM OTHERWISE
+pause
+echo.
+echo Clearing Application Cache...
+fastboot.exe erase cache 
 
 
 :: CLEAR SYSTEM PARTITION (ADVANCED)
