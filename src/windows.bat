@@ -286,28 +286,32 @@ call:title
 echo The utility will now clear the Application Cache. THIS WILL REBOOT YOUR DEVICE TO FASTBOOT!
 call:advancedwarning
 echo.
-adb.exe devices
-echo.
-echo Please confirm your device is listed above.
-pause
-echo.
-echo Rebooting to Fastboot...
-adb.exe reboot-bootloader
-echo.
-echo Please DO NOT CLICK ANYTHING UNTIL YOUR DEVICE SHOWS IT IS IN FASTBOOT!!!
-pause
-pause
-pause
-echo.
-echo Checking if Fastboot Detects your Device...
-fastboot.exe devices
-echo.
-echo IF YOUR DEVICE IS NOT DETECTED EXIT THIS PROGRAM OTHERWISE
-pause
-echo.
-echo Clearing Application Cache...
-fastboot.exe format cache 
-fastboot.exe continue
+if exist <fastboot.exe> (
+    adb.exe devices
+	echo.
+	echo Please confirm your device is listed above.
+	pause
+	echo.
+	echo Rebooting to Fastboot...
+	adb.exe reboot-bootloader
+	echo.
+	echo Please DO NOT CLICK ANYTHING UNTIL YOUR DEVICE SHOWS IT IS IN FASTBOOT!!!
+	pause
+	pause
+	pause
+	echo.
+	echo Checking if Fastboot Detects your Device...
+	fastboot.exe devices
+	echo.
+	echo IF YOUR DEVICE IS NOT DETECTED EXIT THIS PROGRAM OTHERWISE
+	pause
+	echo.
+	echo Clearing Application Cache...
+	fastboot.exe format cache 
+	fastboot.exe continue
+) else (
+	echo FASTBOOT IS NOT DETECTED. Is this not the experimental build of ADB Manager?
+)
 pause
 goto advanced
 
@@ -319,28 +323,32 @@ call:title
 echo The utility will now clear the User Data. THIS WILL REBOOT YOUR DEVICE TO FASTBOOT!
 call:advancedwarning
 echo.
-adb.exe devices
-echo.
-echo Please confirm your device is listed above.
-pause
-echo.
-echo Rebooting to Fastboot...
-adb.exe reboot-bootloader
-echo.
-echo Please DO NOT CLICK ANYTHING UNTIL YOUR DEVICE SHOWS IT IS IN FASTBOOT!!!
-pause
-pause
-pause
-echo.
-echo Checking if Fastboot Detects your Device...
-fastboot.exe devices
-echo.
-echo IF YOUR DEVICE IS NOT DETECTED EXIT THIS PROGRAM OTHERWISE
-pause
-echo.
-echo Clearing User Data...
-fastboot.exe format userdata
-fastboot.exe continue
+if exist <fastboot.exe> (
+    adb.exe devices
+	echo.
+	echo Please confirm your device is listed above.
+	pause
+	echo.
+	echo Rebooting to Fastboot...
+	adb.exe reboot-bootloader
+	echo.
+	echo Please DO NOT CLICK ANYTHING UNTIL YOUR DEVICE SHOWS IT IS IN FASTBOOT!!!
+	pause
+	pause
+	pause
+	echo.
+	echo Checking if Fastboot Detects your Device...
+	fastboot.exe devices
+	echo.
+	echo IF YOUR DEVICE IS NOT DETECTED EXIT THIS PROGRAM OTHERWISE
+	pause
+	echo.
+	echo Clearing User Data...
+	fastboot.exe format userdata
+	fastboot.exe continue
+) else (
+    echo FASTBOOT IS NOT DETECTED. Is this not the experimental build of ADB Manager?
+)
 pause
 goto advanced
 
@@ -367,7 +375,11 @@ call:title
 echo The utility will now reboot your device into Fastboot.
 call:advancedwarning
 echo.
-adb.exe reboot-bootloader
+if exist <fastboot.exe> (
+    adb.exe reboot-bootloader
+) else (
+    echo FASTBOOT IS NOT DETECTED. Is this not the experimental build of ADB Manager?
+)
 pause
 goto advanced
 
