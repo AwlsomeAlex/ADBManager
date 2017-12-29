@@ -306,17 +306,55 @@ echo IF YOUR DEVICE IS NOT DETECTED EXIT THIS PROGRAM OTHERWISE
 pause
 echo.
 echo Clearing Application Cache...
-fastboot.exe erase cache 
-
+fastboot.exe format cache 
+fastboot.exe continue
+pause
+goto advanced
 
 :: CLEAR SYSTEM PARTITION (ADVANCED)
 :systemwipe
-
+title Android ADB Device Manager - Clear Userdata
+cls
+call:title
+echo The utility will now clear the User Data. THIS WILL REBOOT YOUR DEVICE TO FASTBOOT!
+call:advancedwarning
+echo.
+adb.exe devices
+echo.
+echo Please confirm your device is listed above.
+pause
+echo.
+echo Rebooting to Fastboot...
+adb.exe reboot-bootloader
+echo.
+echo Please DO NOT CLICK ANYTHING UNTIL YOUR DEVICE SHOWS IT IS IN FASTBOOT!!!
+pause
+pause
+pause
+echo.
+echo Checking if Fastboot Detects your Device...
+fastboot.exe devices
+echo.
+echo IF YOUR DEVICE IS NOT DETECTED EXIT THIS PROGRAM OTHERWISE
+pause
+echo.
+echo Clearing User Data...
+fastboot.exe format userdata
+fastboot.exe continue
+pause
+goto advanced
 
 
 :: LOG SYSTEM EVENTS (ADVANCED)
 :log
-
+title Android ADB Device Manager - Log Android Events
+cls
+call:title
+echo The utility will now log the system's events to %USERPROFILE%/android.txt. WARNING, THIS CAN CONTAIN SENSITIVE DATA FROM THE DEVICE!
+call:advancedwarning
+echo.
+echo To stop logging, please press "Ctl + C".
+adb.exe logcat
 
 
 :: REBOOT DEVICE INTO BOOTLOADER (ADVANCED)
@@ -337,4 +375,5 @@ fastboot.exe erase cache
 :: STOP FUNCTION
 :stop
 Taskkill /IM adb.exe /F
+Taskkill /IM fastboot.exe /F
 exit
