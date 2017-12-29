@@ -210,7 +210,7 @@ echo Please Select an Option:
 echo ========================
 echo.
 echo 1) Enter ADB Shell
-echo 2) Enabled ADB Root
+echo 2) Enable ADB Root
 echo 3) Clear Dalvik Cache
 echo 4) Clear System Storage
 echo 5) Log Device
@@ -254,10 +254,10 @@ if "%choice%"=="NO" goto advanced
 title Android ADB Device Manager - Internal Device Terminal (Shell)
 cls
 call:title
-call:advancedwarning
 echo The Utility will now connect to your Android's Internal Terminal (Shell).
 echo To exit the shell type in the terminal interpretor "exit".
-echo. 
+call:advancedwarning
+echo.
 adb.exe shell
 pause
 goto advanced
@@ -266,6 +266,15 @@ goto advanced
 
 :: ADB Root (ADVANCED)
 :root
+title Android ADB Device Manager - Enable Root ADB 
+cls
+call:title
+echo The Utility will now restart the ADB Daemon with Root Permissions.
+call:advancedwarning
+echo.
+adb.exe root
+pause
+goto advanced
 
 
 
