@@ -354,12 +354,22 @@ echo The utility will now log the system's events to %USERPROFILE%/android.txt. 
 call:advancedwarning
 echo.
 echo To stop logging, please press "Ctl + C".
-adb.exe logcat
+adb.exe logcat >> %USERPROFILE%/android
+pause
+goto advanced
 
 
 :: REBOOT DEVICE INTO BOOTLOADER (ADVANCED)
 :bootloader
-
+title Android ADB Device Manager - Reboot to Bootloader (Fastboot)
+cls
+call:title
+echo The utility will now reboot your device into Fastboot.
+call:advancedwarning
+echo.
+adb.exe reboot-bootloader
+pause
+goto advanced
 
 
 :: ENTER CUSTOM COMMAND TO BE EXECUTED BY ADB.EXE (ADVANCED)
